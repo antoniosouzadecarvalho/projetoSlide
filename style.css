@@ -52,6 +52,14 @@
 
 }
 
+video {
+    width: 400px;
+}
+
+img {
+    width: 400px;
+}
+
 @keyframes progress-bar{
     from { width: 0% ;}
     to { width: 100%;}

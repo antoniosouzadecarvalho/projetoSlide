@@ -1,66 +1,7 @@
 
+
 /*
-let slideImageIndex = 0;
-
-
-showImage()
-
-function showImage(){
-    let i;
-
-    const imageSlide = document.getElementsByClassName("image-slide")
-
-    for( i = 0; i < imageSlide.length; i++){
-        imageSlide[i].style.display = "none"
-    }
-
-    slideIndex++
-
-    if(slideImageIndex > imageSlide.length){
-        for( i = 0; i < imageSlide.length; i++){
-            imageSlide[i].style.display = "none"
-        }
-        return
-    }
-
-
-    imageSlide[slideImageIndex - 1].style.display = "block"
-
-    console.log("ola")
-
-    setTimeout(showImage, 5000)
-
-}
-*/
-
-/*let slideVideoIndex = 0;
-
-showVideo()
-
-function showVideo(){
-    let i;
-
-    const videoSlide = document.getElementsByClassName("video-slide")
-
-    for(i = 0; i < videoSlide.length; i++){
-        videoSlide[i].style.display = "none";
-        videoSlide[i].children[0].autoplay = false
-    }
-
-    slideVideoIndex++;
-
-    if(slideVideoIndex > videoSlide.length){
-        slideVideoIndex = 1;
-    }
-
-    videoSlide[slideVideoIndex - 1].style.display = "block";
-    videoSlide[slideVideoIndex - 1].children[0].muted = true
-
-    setTimeout(showVideo, 35000)
-}*/
-
-
-let slideIndex = 1;
+cccc
 let slideCont = 1;
 
 let containerElement = document.getElementsByClassName("midia-container");
@@ -70,30 +11,87 @@ containerElement[0].style.display = "none"
 let videoElement = document.getElementById("midiaVideo");
 let imageElement = document.getElementById("midiaImage");
 
+*/
+
+let containerMidia = document.getElementsByClassName("midia-container");
+
 const midiaData = [
-    {image: "./midia/imagen-01.jpeg", duration: 10, midiaType: 1},
-    {video: "./midia/video-01.mp4", duration: 31, midiaType: 0},
-    {video: "./midia/video-02.mp4", duration: 26, midiaType: 0},
-    {image: "./midia/imagen-02.jpeg", duration: 10, midiaType: 1},
-    {video: "./midia/video-03.mp4", duration: 36, midiaType: 0}
+    {addressImage: "./midia/imagen-01.jpeg", duration: 10, midiaType: 1, image: 1},
+    {addressVideo: "./midia-02/video-01.mp4", duration: 35, midiaType: 0, video:1},
+    {addressVideo: "./midia-02/video-02.mp4", duration: 30, midiaType: 0, video:2},
+    {addressImage: "./midia/imagen-02.jpeg", duration: 10, midiaType: 1, image: 2},
+    {addressVideo: "./midia-02/video-03.mp4", duration: 40, midiaType: 0, video:3}
 ]
+
+loadingMidias()
+
+function loadingMidias(){   
+
+    midiaData.map( midia => {
+        
+        if(midia.midiaType == 0) {
+            let videoDiv = document.createElement("div")
+            videoDiv.setAttribute("class", "classVideo")
+
+            let midiaVideo = document.createElement("video");
+            midiaVideo.setAttribute("src", `${midia.addressVideo}`);
+
+            videoDiv.appendChild(midiaVideo);
+
+            containerMidia[midia.midiaType].appendChild(videoDiv)
+        }
+
+        if(midia.midiaType == 1) {
+
+            let imageDiv = document.createElement("div")
+            imageDiv.setAttribute("class", "classImage")
+
+            let midiaImage = document.createElement("img");
+            midiaImage.setAttribute("src", `${midia.addressImage}`);
+
+            imageDiv.appendChild(midiaImage);
+
+            containerMidia[midia.midiaType].appendChild(imageDiv)
+        }
+
+    })
+}
+
+let divsVideo = document.getElementsByClassName("classVideo");
+let divsImage = document.getElementsByClassName("classImage");
+let y;
+let x;
+let slideIndex = 1;
 
 showSlide()
 
 function showSlide(){
 
-    if(midiaData[slideIndex - 1].midiaType == 0){
-        containerElement[1].style.display = "none"
+    for(y = 0; y < divsVideo.length; y++){
+        divsVideo[y].style.display = "none";
+    }
 
-        containerElement[0].style.display = "block";
-        videoElement.src = midiaData[slideIndex - 1].video;
+    for(x = 0; x < divsImage.length; x++){
+        divsImage[x].style.display = "none";
+    }
+
+    if(midiaData[slideIndex - 1].midiaType == 0){
+        containerMidia[1].style.display = "none"
+
+        containerMidia[0].style.display = "block";
+
+        divsVideo[midiaData[slideIndex - 1].video - 1].style.display = "block"
+        divsVideo[midiaData[slideIndex - 1].video - 1].children[0].play();
+        
     }
        
     if(midiaData[slideIndex - 1].midiaType == 1){
-        containerElement[0].style.display = "none"
+        containerMidia[0].style.display = "none"
 
-        containerElement[1].style.display = "block";
-        imageElement.src = midiaData[slideIndex - 1].image;
+        containerMidia[1].style.display = "block";
+
+       divsImage[midiaData[slideIndex - 1].image - 1].style.display = "block"
+        
     }
 
 
@@ -110,23 +108,6 @@ function showSlide(){
 }
 
 
-let progressBar = document.getElementById("bar");
-let time = 1;
-console.log(duration)
-
-
-function showBar(){ 
-    time++
-    progressBar.style.width = time / duration * 100 + "%"
-
-    if(time == duration){
-        progressBar.style.width = "0px"
-        time = 1;
-    }
-
-}
-
-setInterval(showBar, 1000)
 
 
 
