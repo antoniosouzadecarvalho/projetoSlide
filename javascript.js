@@ -17,10 +17,14 @@ let containerMidia = document.getElementsByClassName("midia-container");
 
 const midiaData = [
     {addressImage: "./midia/imagen-01.jpeg", duration: 10, midiaType: 1, image: 1},
-    {addressVideo: "./midia-02/video-01.mp4", duration: 35, midiaType: 0, video:1},
-    {addressVideo: "./midia-02/video-02.mp4", duration: 30, midiaType: 0, video:2},
+    {addressVideo: "./midia-02/video-01-mp4.mp4", duration: 35, midiaType: 0, video:1},
+    {addressVideo: "./midia-02/video-02-mp4.mp4", duration: 30, midiaType: 0, video:2},
     {addressImage: "./midia/imagen-02.jpeg", duration: 10, midiaType: 1, image: 2},
-    {addressVideo: "./midia-02/video-03.mp4", duration: 40, midiaType: 0, video:3}
+    {addressVideo: "./midia-02/video-03-mp4.mp4", duration: 40, midiaType: 0, video:3},
+    {addressVideo: "./midia-02/video-04-mp4.mp4", duration: 25, midiaType: 0, video:4},
+    {addressVideo: "./midia-02/video-05-mp4.mp4", duration: 25, midiaType: 0, video:5},
+    {addressVideo: "./midia-02/video-06-mp4.mp4", duration: 55, midiaType: 0, video:6}
+    
 ]
 
 loadingMidias()
